@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn With Fun - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-light: #f8fafc;
+            --bg-dark: #0f172a;
+            --card-light: #ffffff;
+            --card-dark: #1e293b;
+            --text-light: #1e293b;
+            --text-dark: #f1f5f9;
+            --text-muted-light: #64748b;
+            --text-muted-dark: #94a3b8;
+            --border-light: #e2e8f0;
+            --border-dark: #334155;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-light);
+            transition: background 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        body.dark-mode {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--card-light);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode nav {
+            background: var(--card-dark);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        body.dark-mode .nav-links a {
+            color: var(--text-dark);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-name {
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--primary);
+            padding: 12px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Course Grid */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .course-card {
+            background: var(--card-light);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        body.dark-mode .course-card {
+            background: var(--card-dark);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-icon {
+            font-size: 48px;
+            margin-bottom: 1rem;
+        }
+
+        .course-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .course-description {
+            color: var(--text-muted-light);
+            font-size: 14px;
+            margin-bottom: 1rem;
+        }
+
+        body.dark-mode .course-description {
+            color: var(--text-muted-dark);
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--text-muted-light);
+        }
+
+        body.dark-mode .course-meta {
+            color: var(--text-muted-dark);
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--card-light);
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            border-radius: 12px;
+        }
+
+        body.dark-mode .features {
+            background: var(--card-dark);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text {
+            font-size: 14px;
+            color: var(--text-muted-light);
+        }
+
+        body.dark-mode .feature-text {
+            color: var(--text-muted-dark);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-light);
+            padding: 2rem;
+            margin-top: 4rem;
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+        }
+
+        body.dark-mode footer {
+            background: var(--card-dark);
+            border-top: 1px solid var(--border-dark);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        body.dark-mode .mobile-menu-btn {
+            color: var(--text-dark);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--card-light);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            body.dark-mode .nav-links {
+                background: var(--card-dark);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🎓 Learn With Fun</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="courses.html">Courses</a>
+                <a href="profile.html">Profile</a>
+                <div class="user-menu">
+                    <span class="user-name" id="userName">Guest</span>
+                    <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Learn With Fun</h1>
+            <p>Master programming languages and technologies through interactive courses and hands-on projects</p>
+            <a href="courses.html" class="cta-button">Explore Courses</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h2 class="section-title">Popular Courses</h2>
+        <div class="course-grid">
+            <a href="js.html" class="course-card">
+                <div class="course-icon">🟨</div>
+                <h3 class="course-title">JavaScript</h3>
+                <p class="course-description">Learn modern JavaScript ES6+ and build dynamic web applications</p>
+                <div class="course-meta">
+                    <span>⏱️ 40 hours</span>
+                    <span>⭐ 4.8/5</span>
+                </div>
+            </a>
+
+            <a href="java.html" class="course-card">
+                <div class="course-icon">☕</div>
+                <h3 class="course-title">Java</h3>
+                <p class="course-description">Master object-oriented programming with Java</p>
+                <div class="course-meta">
+                    <span>⏱️ 50 hours</span>
+                    <span>⭐ 4.7/5</span>
+                </div>
+            </a>
+
+            <a href="DataStructuresAndAlgorithm.html" class="course-card">
+                <div class="course-icon">🔢</div>
+                <h3 class="course-title">Data Structures & Algorithms</h3>
+                <p class="course-description">Essential DSA concepts for coding interviews</p>
+                <div class="course-meta">
+                    <span>⏱️ 60 hours</span>
+                    <span>⭐ 4.9/5</span>
+                </div>
+            </a>
+
+            <a href="cpp.html" class="course-card">
+                <div class="course-icon">⚡</div>
+                <h3 class="course-title">C++</h3>
+                <p class="course-description">Learn high-performance programming with C++</p>
+                <div class="course-meta">
+                    <span>⏱️ 45 hours</span>
+                    <span>⭐ 4.6/5</span>
+                </div>
+            </a>
+
+            <a href="css.html" class="course-card">
+                <div class="course-icon">🎨</div>
+                <h3 class="course-title">CSS</h3>
+                <p class="course-description">Design beautiful and responsive user interfaces</p>
+                <div class="course-meta">
+                    <span>⏱️ 30 hours</span>
+                    <span>⭐ 4.7/5</span>
+                </div>
+            </a>
+
+            <a href="database.html" class="course-card">
+                <div class="course-icon">🗄️</div>
+                <h3 class="course-title">Database</h3>
+                <p class="course-description">Master SQL and database management systems</p>
+                <div class="course-meta">
+                    <span>⏱️ 35 hours</span>
+                    <span>⭐ 4.8/5</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features">
+            <h2 class="section-title">Why Choose Learn With Fun?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">Comprehensive Content</h3>
+                    <p class="feature-text">In-depth courses covering all major programming languages</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💡</div>
+                    <h3 class="feature-title">Interactive Learning</h3>
+                    <p class="feature-text">Hands-on projects and real-world examples</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Career Focused</h3>
+                    <p class="feature-text">Skills that employers are looking for</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌙</div>
+                    <h3 class="feature-title">Dark Mode</h3>
+                    <p class="feature-text">Study comfortably at any time of day</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Learn With Fun. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 14px; opacity: 0.7;">Made with ❤️ for learners worldwide</p>
+    </footer>
+
+    <script>
+        // Theme Management
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('themeToggle').textContent = isDark ? '☀️' : '🌙';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Load saved theme
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('themeToggle').textContent = '☀️';
+            }
+
+            // Check if user is logged in
+            const isLoggedIn = localStorage.getItem('loggedIn');
+            const userName = localStorage.getItem('userName');
+
+            if (isLoggedIn === 'true' && userName) {
+                document.getElementById('userName').textContent = userName;
+            } else {
+                // Redirect to login if not logged in
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('loggedIn');
+                localStorage.removeItem('userName');
+                localStorage.removeItem('userEmail');
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
+</body>
+</html>
