@@ -118,15 +118,138 @@
         .btn{background:var(--primary);color:#fff;padding:.6rem 1rem;border-radius:8px;border:0;cursor:pointer;text-decoration:none;display:inline-block;font-weight:600}
         .btn:hover{transform:translateY(-2px);transition:transform .15s}
 
-        .quiz{max-width:var(--container);margin:1rem auto;padding:1rem}
-        .quiz p{font-weight:600;margin:.5rem 0}
-        .quiz label{display:block;margin:.25rem 0}
-        .quiz .result{margin-top:.5rem;font-weight:700}
+        /* --- Start: Corrected Quiz CSS --- */
 
-        @media (max-width:768px){
-            .course-header h1{font-size:1.6rem}
-            .nav-container{padding:1rem}
-        }
+/* Enhanced Quiz Section Styling */
+.section[aria-labelledby="quiz-title"] {
+    border-left: 6px solid var(--primary); /* Stronger left border */
+    background: var(--card-light); /* Keep card background for light mode */
+    padding: 2rem; /* More internal space */
+    margin-bottom: 2rem; /* More space below */
+    box-shadow: 0 4px 15px rgba(0,0,0,.08); /* Slightly more prominent shadow */
+}
+
+body.dark-mode .section[aria-labelledby="quiz-title"] {
+    background: var(--card-dark); /* Keep card background for dark mode */
+}
+
+/* CORRECTED: Targets h2 inside the section */
+.section[aria-labelledby="quiz-title"] h2 {
+    font-size: 1.75rem; /* Larger quiz title */
+    color: var(--primary);
+    /* text-align: center; */
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-light); /* Add a subtle separator */
+}
+body.dark-mode .section[aria-labelledby="quiz-title"] h2 {
+    border-color: var(--border-dark);
+}
+
+/* CORRECTED: Targets p tags inside the form */
+.section[aria-labelledby="quiz-title"] form p {
+    font-weight: 600;
+    margin: 1.25rem 0 0.75rem 0; /* More space around questions */
+    font-size: 1.1rem; /* Slightly larger question text */
+    color: var(--text-light);
+}
+body.dark-mode .section[aria-labelledby="quiz-title"] form p {
+    color: var(--text-dark);
+}
+
+/* Style the instruction <p> tag */
+.section[aria-labelledby="quiz-title"] form #quiz-help {
+    font-weight: 400; /* Not bold */
+    font-size: 1rem;
+    /* text-align: center; */
+    margin-top: 0; /* No top margin for first p */
+    margin-bottom: 1.5rem;
+    color: var(--muted-light);
+}
+body.dark-mode .section[aria-labelledby="quiz-title"] form #quiz-help {
+    color: var(--muted-dark);
+}
+
+
+/* CORRECTED: Targets labels inside the form */
+.section[aria-labelledby="quiz-title"] label {
+    display: flex; /* Use flex to align radio and text */
+    align-items: center;
+    margin: 0.75rem 0; /* More space between options */
+    padding: 0.75rem 1rem;
+    background: var(--bg-light); /* Background for each option */
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background .2s ease-in-out, transform .1s ease-out;
+    border: 1px solid var(--border-light);
+}
+body.dark-mode .section[aria-labelledby="quiz-title"] label {
+    background: var(--bg-dark);
+    border-color: var(--border-dark);
+}
+
+/* CORRECTED: Targets label:hover inside the form */
+.section[aria-labelledby="quiz-title"] label:hover {
+    background: var(--primary); /* Hover background */
+    color: #fff; /* White text on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+    box-shadow: 0 4px 10px rgba(0,0,0,.1);
+    border-color: var(--primary);
+}
+
+body.dark-mode .section[aria-labelledby="quiz-title"] label:hover {
+    background: var(--primary); /* Still primary for dark mode hover */
+    color: #fff;
+    border-color: var(--primary);
+}
+
+/* CORRECTED: Targets radio inputs inside the form */
+.section[aria-labelledby="quiz-title"] label input[type="radio"] {
+    margin-right: 0.75rem; /* Space between radio button and text */
+    transform: scale(1.2); /* Slightly larger radio buttons */
+    accent-color: var(--primary); /* Customize radio button color */
+}
+
+/* CORRECTED: Targets the .result div inside the form */
+.section[aria-labelledby="quiz-title"] .result {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(99,102,241,.1); /* Light background for results */
+    border-radius: var(--radius);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    border: 1px dashed var(--primary);
+}
+/* --- End: Corrected Quiz CSS --- */
+/* Enhanced Button Styling (apply globally or target specifically) */
+    .btn {
+        padding: 0.8rem 1.5rem; /* Larger padding for buttons */
+        border-radius: var(--radius); /* Match section radius */
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        transition: background .2s ease-in-out, transform .15s ease-out, box-shadow .15s ease-out;
+    }
+
+    .btn:hover {
+        box-shadow: 0 5px 15px rgba(99,102,241,.3); /* Shadow on hover */
+    }
+
+    .btn[type="reset"] {
+        background: var(--muted-light); /* Muted background for reset button */
+    }
+    body.dark-mode .btn[type="reset"] {
+        background: var(--muted-dark);
+    }
+    .btn[type="reset"]:hover {
+        background: #64748b; /* Slightly darker on hover */
+        box-shadow: 0 5px 15px rgba(100,116,139,.3);
+    }
+
+    @media (max-width:768px){
+        .course-header h1{font-size:1.6rem}
+        .nav-container{padding:1rem}
+    }
     </style>
 </head>
 <body>
@@ -215,39 +338,39 @@ async function fetchUserData(userId) {
             </ul>
         </section>
 
-        <div class="section" style="text-align:center">
-            <a href="courses.html" class="btn" role="button">← Back to All Courses</a>
-        </div>
-    </main>
-
-    <section class="section" aria-labelledby="quiz-title">
-        <h3 id="quiz-title">🧠 JavaScript Basics Quiz</h3>
-        <form id="quizForm" aria-describedby="quiz-help">
+        <section class="section" aria-labelledby="quiz-title">
+            <h2 id="quiz-title">🧠 JavaScript Basics Quiz</h2>
+            <form id="quizForm" aria-describedby="quiz-help">
             <p id="quiz-help">Select one answer per question and click Submit to see your score.</p>
 
-            <p>1. Which keyword is used to declare a variable in JavaScript?</p>
+            <p><b>1. Which keyword is used to declare a variable in JavaScript?</b></p>
             <label><input type="radio" name="q1" value="var"> var</label>
             <label><input type="radio" name="q1" value="dim"> dim</label>
             <label><input type="radio" name="q1" value="declare"> declare</label>
 
-            <p>2. What will <code>typeof null</code> return?</p>
+            <p><b>2. What will <code>typeof null</code> return?</b></p>
             <label><input type="radio" name="q2" value="object"> "object"</label>
             <label><input type="radio" name="q2" value="null"> "null"</label>
             <label><input type="radio" name="q2" value="undefined"> "undefined"</label>
 
-            <p>3. Which of these is not a JavaScript data type?</p>
+            <p><b>3. Which of these is not a JavaScript data type?</b></p>
             <label><input type="radio" name="q3" value="number"> number</label>
             <label><input type="radio" name="q3" value="string"> string</label>
             <label><input type="radio" name="q3" value="character"> character</label>
 
-            <div style="margin-top:.75rem">
-                <button type="button" id="submitQuiz" class="btn">Submit</button>
-                <button type="reset" class="btn" style="background:#94a3b8;margin-left:.5rem">Reset</button>
-            </div>
+        <div style="margin-top:20px">
+            <button type="button" id="submitQuiz" class="btn">Submit</button>
+            <button type="reset" class="btn" style="background:#94a3b8;margin-left:.5rem">Reset</button>
+        </div>
 
-            <div id="quizResult" class="result" aria-live="polite"></div>
-        </form>
-    </section>
+        <div id="quizResult" class="result" aria-live="polite"></div>
+    </form>
+</section>
+
+        <div class="section" style="text-align:center">
+            <a href="courses.html" class="btn" role="button">← Back to All Courses</a>
+        </div>
+    </main>
 
     <script>
         // Theme management: use saved preference, otherwise respect OS preference.
